@@ -1,0 +1,22 @@
+@model MyViewModel
+<h1 class="container d-flex justify-content-center">@Model.Product.Name</h1>
+<div class="container">
+    <h3>Categories</h3>
+    @foreach (Association c in @Model.Product.Categories)
+    {
+        <p>@c.Category.Name</p>
+    }
+</div>
+<div class="container">
+    <h3>Add Category</h3>
+    <form asp-action="AddCategory" asp-controller="Home" method="post">
+        <input type="hidden" asp-for=@Model.Association.ProductId value=@Model.Product.ProductId>
+        <select asp-for=@Model.Association.CategoryId>
+            @foreach (Category c in @ViewBag.categoriesNotInSP)
+            {
+                <option value=@c.CategoryId>@c.Name</option>
+            }
+        </select>
+        <button class="btn btn-info">Add</button>
+    </form>
+</div>

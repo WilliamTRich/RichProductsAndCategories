@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="container">
+        <h1>New Category</h1>
+        @await Html.PartialAsync("_AddCategory")
+    </div>
+    <div class="container">
+        <h1>All Categories</h1>
+        @foreach (Category c in ViewBag.AllCategories)
+        {
+            <a asp-action="SingleCategory" asp-route-id=@c.CategoryId>@c.Name</a>
+        }
+    </div>
+</div>
